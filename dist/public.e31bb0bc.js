@@ -41517,6 +41517,7 @@ var Balloon = require('./Balloon');
 function sketch(p5) {
   var me;
   var players = [];
+  var eaten = new Set();
 
   p5.setup = function () {
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
@@ -41530,11 +41531,11 @@ function sketch(p5) {
     });
     socket.on('gameupdate', function (updatedPlayers) {
       players = updatedPlayers;
+      console.log(players);
     });
   };
 
   function drawEnemie(player) {
-    if (player.id === socket.id) return;
     p5.fill(255, 0, 0);
     p5.ellipse(player.x, player.y, player.r);
     p5.textAlign(p5.CENTER);
@@ -41557,16 +41558,20 @@ function sketch(p5) {
     p5.line(-1000, 1000, -1000, -1000);
     p5.stroke(0);
     p5.strokeWeight(1);
-    players.forEach(function (p) {
-      drawEnemie(p);
-      /*const contact = me.contact(p);
-      if (contact === 1) {
-        socket.emit('eaten', p.id);
-      } else if (contact === -1) {
-        alert('Sei stato mangiato!');
-        lost = true;
-        p5.noLoop();
-      }*/
+    players.forEach(function (p, i) {
+      if (p.id !== socket.id && !eaten.has(p.id)) {
+        drawEnemie(p);
+        var contact = me.contact(p);
+
+        if (contact === 1) {
+          socket.emit('eat', p.id);
+          eaten.add(p.id);
+          players.splice(i, 1);
+        } else if (contact === -1) {
+          alert('Sei stato mangiato!');
+          p5.noLoop();
+        }
+      }
     });
     socket.emit('clientupdate', {
       x: me.pos.x,
@@ -41612,7 +41617,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61885" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63766" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -35,9 +35,10 @@ io.sockets.on('connection', socket => {
     p.r = data.r;
   });
 
-  /*socket.on('eaten', eatenId => {
+  socket.on('eaten', eatenId => {
     players.delete(eatenId);
-  });*/
+    console.log(players);
+  });
 
   socket.on('disconnect', () => {
     console.log(`Client disconnected with id: ${socket.id}`);
