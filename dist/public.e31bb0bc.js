@@ -41517,7 +41517,6 @@ var Balloon = require('./Balloon');
 function sketch(p5) {
   var me;
   var players = [];
-  var lost = false;
 
   p5.setup = function () {
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
@@ -41560,24 +41559,20 @@ function sketch(p5) {
     p5.strokeWeight(1);
     players.forEach(function (p) {
       drawEnemie(p);
-      var contact = me.contact(p);
-
+      /*const contact = me.contact(p);
       if (contact === 1) {
         socket.emit('eaten', p.id);
       } else if (contact === -1) {
         alert('Sei stato mangiato!');
         lost = true;
         p5.noLoop();
-      }
+      }*/
     });
-
-    if (!lost) {
-      socket.emit('clientupdate', {
-        x: me.pos.x,
-        y: me.pos.y,
-        r: me.r
-      });
-    }
+    socket.emit('clientupdate', {
+      x: me.pos.x,
+      y: me.pos.y,
+      r: me.r
+    });
   };
 }
 
@@ -41617,7 +41612,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61769" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61885" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

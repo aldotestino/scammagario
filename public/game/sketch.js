@@ -10,7 +10,6 @@ const Balloon = require('./Balloon');
 function sketch(p5) {
   let me;
   let players = [];
-  let lost = false;
 
   p5.setup = () => {
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
@@ -56,22 +55,20 @@ function sketch(p5) {
 
     players.forEach(p => {
       drawEnemie(p);
-      const contact = me.contact(p);
+      /*const contact = me.contact(p);
       if (contact === 1) {
         socket.emit('eaten', p.id);
       } else if (contact === -1) {
         alert('Sei stato mangiato!');
         lost = true;
         p5.noLoop();
-      }
+      }*/
     });
-    if (!lost) {
-      socket.emit('clientupdate', {
-        x: me.pos.x,
-        y: me.pos.y,
-        r: me.r
-      });
-    }
+    socket.emit('clientupdate', {
+      x: me.pos.x,
+      y: me.pos.y,
+      r: me.r
+    });
   };
 }
 
