@@ -1,0 +1,24 @@
+{
+  "name": "not_agario",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node index.js",
+    "client": "parcel public/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "p5": "^1.1.9",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "nodemon": "^2.0.5",
+    "parcel": "^1.12.4"
+  }
+}
