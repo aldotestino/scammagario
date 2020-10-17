@@ -1,10 +1,10 @@
 {
-  "name": "not_agario",
+  "name": "scammagario",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "parcel build public/index.html && node index.js",
     "client": "parcel public/index.html"
   },
   "keywords": [],

@@ -36,17 +36,16 @@ class Balloon {
     p5.text(name, pos.x, pos.y + 10);
   }
 
-  contact(enemie) {
+  contact(entity) {
     const { p5, pos, r } = this;
-    const enemiePos = p5.createVector(enemie.x, enemie.y);
-    const dist = Vector.dist(pos, enemiePos);
-    if (dist < r / 2 + enemie.r / 2) {
-      if (r > enemie.r) {
-        console.log('mangiato');
-        const area = p5.PI * Math.pow(r / 2, 2) + p5.PI * Math.pow(enemie.r / 2, 2);
+    const entityPos = p5.createVector(entity.x, entity.y);
+    const dist = Vector.dist(pos, entityPos);
+    if (dist < r / 2 + entity.r / 2) {
+      if (r > entity.r) {
+        const area = p5.PI * Math.pow(r / 2, 2) + p5.PI * Math.pow(entity.r / 2, 2);
         this.r = Math.sqrt(area / p5.PI) * 2;
         return 1;
-      } else if (r < enemie.r) {
+      } else if (r < entity.r) {
         console.log('sei stato mangiato');
         return -1;
       }
