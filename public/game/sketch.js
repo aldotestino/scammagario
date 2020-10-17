@@ -47,7 +47,9 @@ function sketch(p5) {
     p5.ellipse(player.x, player.y, player.r);
     p5.textAlign(p5.CENTER);
     p5.fill(0);
-    p5.text(player.name, player.x, player.y + 10);
+    if (player.name) {
+      p5.text(player.name, player.x, player.y + 10);
+    }
   }
 
   function drawFood(food) {

@@ -33,7 +33,9 @@ class Balloon {
     p5.fill(0);
     p5.textAlign(p5.CENTER);
     p5.textSize(32);
-    p5.text(name, pos.x, pos.y + 10);
+    if (name) {
+      p5.text(name, pos.x, pos.y + 10);
+    }
   }
 
   contact(entity) {
