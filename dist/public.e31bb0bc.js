@@ -41523,7 +41523,7 @@ function sketch(p5) {
   p5.setup = function () {
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
     var name = window.prompt('Inserisci il tuo nome');
-    me = new Balloon(p5, p5.random(-800, 800), 60, p5.random(100, 200), name);
+    me = new Balloon(p5, p5.random(-800, 800), p5.random(100, 200), 60, name);
 
     for (var i = 0; i < food_number; i++) {
       food.push({
@@ -41546,7 +41546,6 @@ function sketch(p5) {
     });
     socket.on('gameupdate', function (updatedPlayers) {
       players = updatedPlayers;
-      console.log(players);
     });
   };
 
@@ -41657,7 +41656,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57386" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57662" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
