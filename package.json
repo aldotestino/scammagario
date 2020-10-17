@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel build public/index.html && node index.js",
+    "start": "node index.js",
+    "dev": "parcel build public/index.html && node index.js",
     "client": "parcel public/index.html"
   },
   "keywords": [],
