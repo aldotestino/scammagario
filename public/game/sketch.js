@@ -40,6 +40,11 @@ function sketch(p5) {
     socket.on('gameupdate', updatedPlayers => {
       players = updatedPlayers;
     });
+
+    socket.on('eaten', data => {
+      alert(`Sei stato mangiato da: ${data.name}`);
+      location.reload();
+    });
   };
 
   function drawEnemie(player) {
@@ -89,7 +94,7 @@ function sketch(p5) {
     food.forEach((f, i) => {
       drawFood(f);
       const contact = me.contact(f);
-      if (contact === 1) {
+      if (contact) {
         food.splice(i, 1);
       }
     });
@@ -98,13 +103,10 @@ function sketch(p5) {
       if (p.id !== socket.id && !eaten.has(p.id)) {
         drawEnemie(p);
         const contact = me.contact(p);
-        if (contact === 1) {
+        if (contact) {
           socket.emit('eat', p.id);
           eaten.add(p.id);
           players.splice(i, 1);
-        } else if (contact === -1) {
-          alert('Sei stato mangiato!');
-          p5.noLoop();
         }
       }
     });

@@ -46,13 +46,10 @@ class Balloon {
       if (r > entity.r) {
         const area = p5.PI * Math.pow(r / 2, 2) + p5.PI * Math.pow(entity.r / 2, 2);
         this.r = Math.sqrt(area / p5.PI) * 2;
-        return 1;
-      } else if (r < entity.r) {
-        console.log('sei stato mangiato');
-        return -1;
+        return true;
       }
     }
-    return 0;
+    return false;
   }
 }
 

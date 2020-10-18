@@ -35,8 +35,9 @@ io.sockets.on('connection', socket => {
     p.r = data.r;
   });
 
-  socket.on('eaten', eatenId => {
+  socket.on('eat', eatenId => {
     players.delete(eatenId);
+    io.to(eatenId).emit('eaten', players.get(socket.id));
     console.log(players);
   });
 
