@@ -17,7 +17,7 @@ function sketch(p5) {
   p5.setup = () => {
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
     const name = window.prompt('Inserisci il tuo nome');
-    me = new Balloon(p5, p5.random(-800, 800), p5.random(100, 200), 60, name);
+    me = new Balloon(p5, p5.random(-800, 800), p5.random(-800, 800), 60, name);
     for (let i = 0; i < food_number; i++) {
       food.push({
         x: p5.random(-900, 900),
